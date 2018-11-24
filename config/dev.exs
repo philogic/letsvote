@@ -7,7 +7,7 @@ use Mix.Config
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
 config :letsvote, LetsvoteWeb.Endpoint,
-  http: [port: 4000],
+  http: [port: 3000],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
@@ -51,8 +51,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :letsvote, Letsvote.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "xcodeclub",
+  password: "",
   database: "letsvote_dev",
   hostname: "localhost",
   pool_size: 10
