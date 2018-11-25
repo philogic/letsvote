@@ -1,5 +1,10 @@
 <h2>My Polls</h2>
 
 <%= for poll <- @polls do %>
-  <h2>Poll: <%= poll.question %></h2>
+  <h4>Poll: <%= poll.question %></h4>
+
+  <%= for option <- poll.options do %>
+    <strong><%= option.answer%></strong>: <%= option.votes%>
+    <br />
+  <% end %>
 <% end %>
