@@ -18,6 +18,8 @@ defmodule LetsvoteWeb.Router do
 
     get "/", PageController, :index
     get "/polls", PollController, :index
+    post "/polls", PollController, :create
+    get "/polls/new", PollController, :new
   end
 
   # Other scopes may use custom stacks.

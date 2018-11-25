@@ -7,4 +7,11 @@ defmodule LetsvoteWeb.PollController do
     |> put_layout(:custom)
     |> render("index.html", polls: polls)
   end
+
+  def new(conn, _params) do
+    poll = Letsvote.Votes.new_poll()
+    conn
+    |> put_layout(:custom)
+    |> render("new.html", poll: poll)
+  end
 end
