@@ -17,9 +17,13 @@ defmodule LetsvoteWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+
     get "/polls", PollController, :index
     post "/polls", PollController, :create
     get "/polls/new", PollController, :new
+
+    resources "/users", UserController, only: [:show, :new, :create]
+
   end
 
   # Other scopes may use custom stacks.
