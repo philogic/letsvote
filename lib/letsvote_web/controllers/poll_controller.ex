@@ -14,4 +14,13 @@ defmodule LetsvoteWeb.PollController do
     |> put_layout(:custom)
     |> render("new.html", poll: poll)
   end
+
+  def create(conn, %{"poll" => poll_params, "options" => options}) do
+    split_options = String.split(options, ",")
+    with {:ok, poll} <- Letsvote.Votes.create_polls_and_options(poll_params, split_options) do
+      conn
+      |> put_flash(:info, "Poll added!")
+      |> redirect(to: poll_path(conn, :index))
+    end
+  end
 end
