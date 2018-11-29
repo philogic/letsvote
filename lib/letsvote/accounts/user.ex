@@ -16,8 +16,7 @@ defmodule Letsvote.Accounts.User do
   def changeset(%User{} = user, attrs) do
     user
     |> cast(attrs, [:username, :email, :active, :password, :password_confirmation])
-    |> unique_constraint(:username)
-    |> validate_confirmation(:password, message: "Password do not match")
+    |> validate_confirmation(:password, message: "Passwords do not match")
     |> encrypt_password()
     |> validate_required([:username, :email, :active, :encrypted_password])
   end
