@@ -14,7 +14,7 @@ defmodule LetsvoteWeb.Router do
   end
 
   scope "/", LetsvoteWeb do
-    pipe_through :browser # Use the default browser stack
+    pipe_through :browser
 
     get "/", PageController, :index
 
@@ -23,6 +23,12 @@ defmodule LetsvoteWeb.Router do
     get "/polls/new", PollController, :new
 
     resources "/users", UserController, only: [:show, :new, :create]
+
+    resources "/sessions", SessionController, only: [:create]
+
+    get "/login", SessionController, :new
+    get "/logout", SessionController, :delete
+
 
   end
 
