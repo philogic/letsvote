@@ -2,6 +2,7 @@ defmodule Letsvote.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
   alias Letsvote.Accounts.User
+  alias Letsvote.Votes.Poll
 
   schema "users" do
     field(:username, :string)
@@ -10,6 +11,7 @@ defmodule Letsvote.Accounts.User do
     field(:encrypted_password, :string)
     field(:password, :string, virtual: true)
     field(:password_confirmation, :string, virtual: true)
+    has_many(:polls, Poll)
     timestamps()
   end
 
