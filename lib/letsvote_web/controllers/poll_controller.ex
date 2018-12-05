@@ -1,6 +1,7 @@
 defmodule LetsvoteWeb.PollController do
   use LetsvoteWeb, :controller
   alias Letsvote.Votes
+  plug LetsvoteWeb.VerifyUserSession when action in [:new, :create]
 
   def index(conn, _params) do
     polls = Votes.list_polls()
