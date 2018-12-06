@@ -6,7 +6,7 @@
     <br />
     <%= label f, :email, "Email:" %>
     <br />
-    <%= text_input f, :email %>
+    <%= email_input f, :email %>
     <br />
     <%= label f, :password, "Password:" %>
     <br />

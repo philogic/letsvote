@@ -19,6 +19,7 @@ defmodule Letsvote.Accounts.User do
     user
     |> cast(attrs, [:username, :email, :active, :password, :password_confirmation])
     |> validate_confirmation(:password, message: "Passwords do not match")
+    |> validate_format(:email, ~r/@/)
     |> encrypt_password()
     |> validate_required([:username, :email, :active, :encrypted_password])
     |> unique_constraint(:username)
