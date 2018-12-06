@@ -21,6 +21,7 @@ defmodule Letsvote.Accounts.User do
     |> validate_confirmation(:password, message: "Passwords do not match")
     |> encrypt_password()
     |> validate_required([:username, :email, :active, :encrypted_password])
+    |> unique_constraint(:username)
   end
 
   def encrypt_password(changeset) do
