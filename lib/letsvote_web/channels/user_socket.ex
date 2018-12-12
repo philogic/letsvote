@@ -1,8 +1,7 @@
 defmodule LetsvoteWeb.UserSocket do
   use Phoenix.Socket
 
-  ## Channels
-  # channel "room:*", LetsvoteWeb.RoomChannel
+  channel("polls:main", LetsvoteWeb.PollsChannel)
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
