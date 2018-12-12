@@ -6,6 +6,7 @@ defmodule LetsvoteWeb.PollsChannel do
   end
 
   def handle_in("hello", _payload, socket) do
+    broadcast socket, "world", %{message: "world"}
     {:reply, {:ok, %{message: "world"}}, socket}
   end
 end
