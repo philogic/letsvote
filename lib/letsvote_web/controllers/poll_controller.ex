@@ -24,4 +24,5 @@ defmodule LetsvoteWeb.PollController do
       |> redirect(to: poll_path(conn, :index))
     end
   end
+
 end

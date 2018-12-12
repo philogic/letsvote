@@ -46,4 +46,18 @@ defmodule Letsvote.Votes do
     |> Option.changeset(attrs)
     |> Repo.insert()
   end
+
+  def choose_option(option_id) do
+    with option <- Repo.get!(Option, option_id),
+         votes <- option.votes + 1
+      do
+        update_option(option, %{votes: votes})
+    end
+  end
+
+  def update_option(option, attrs) do
+    option
+    |> Option.changeset(attrs)
+    |> Repo.update()
+  end
 end
