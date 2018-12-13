@@ -25,4 +25,12 @@ defmodule LetsvoteWeb.PollController do
     end
   end
 
+  def vote(conn, %{"id" => id}) do
+    with {:ok, option} <- Votes.choose_option(id) do
+      conn
+      |> put_flash(:info, "You have voted on #{option.answer}")
+      |> redirect(to: poll_path(conn, :index))
+    end
+  end
+
 end
