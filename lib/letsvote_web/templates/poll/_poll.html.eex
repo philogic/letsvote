@@ -1,0 +1,11 @@
+<div class="poll-display">
+  <h4>Poll: <%= @poll.question %></h4>
+
+  <%= for option <- @poll.options do %>
+    <strong><%= option.answer%></strong>:
+    <span id="vote-count-<%= option.id %>" class="vote-count"><%= option.votes%></span>
+    <a href="/options/<%= option.id %>/vote"
+    class="btn btn-primary vote-button-manual" data-option-id="<%= option.id %>">Like this!</a>
+    <br />
+  <% end %>
+</div>

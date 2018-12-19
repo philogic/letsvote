@@ -18,9 +18,7 @@ defmodule LetsvoteWeb.Router do
 
     get "/", PageController, :index
 
-    get "/polls", PollController, :index
-    post "/polls", PollController, :create
-    get "/polls/new", PollController, :new
+    resources "/polls", PollController, only: [:index, :new, :create, :show]
     get "/options/:id/vote", PollController, :vote
 
     resources "/users", UserController, only: [:show, :new, :create]

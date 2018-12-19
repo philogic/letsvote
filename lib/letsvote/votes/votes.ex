@@ -23,6 +23,10 @@ defmodule Letsvote.Votes do
     end)
   end
 
+  def get_poll(id) do
+    Repo.get!(Poll, id) |> Repo.preload(:options)
+  end
+
   def create_options(options, poll) do
     results = Enum.map(options, fn option ->
       create_option(%{answer: option, poll_id: poll.id})
