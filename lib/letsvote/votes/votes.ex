@@ -14,7 +14,8 @@ defmodule Letsvote.Votes do
   def create_polls_and_options(poll_attrs, options) do
     Repo.transaction(fn  ->
       with {:ok, poll} <- create_poll(poll_attrs),
-           {:ok, _options} <- create_options(options, poll)
+           {:ok, _options} <- create_options(options, poll),
+           {:ok, _filename} <- upload_image(poll_attrs, poll)
       do
         poll
       else
@@ -62,5 +63,15 @@ defmodule Letsvote.Votes do
     option
     |> Option.changeset(attrs)
     |> Repo.update()
+  end
+
+  defp upload_image(%{"image" => image}, poll ) do
+    file_extension = Path.extname(image.filename)
+    filename = "#{poll.id}_image#{file_extension}"
+    File.cp(image.path, "/uploads/#{filename}")
+    {:ok, filename}
+  end
+  defp upload_image(_, _) do
+    {:ok, nil}
   end
 end
