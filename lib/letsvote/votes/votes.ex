@@ -5,7 +5,7 @@ defmodule Letsvote.Votes do
   alias Letsvote.Votes.Image
 
   def list_polls do
-    Repo.all(Poll) |> Repo.preload([:options, :image])
+    Repo.all(Poll) |> Repo.preload([:options, :image, :vote_records])
   end
 
   def new_poll do
@@ -27,7 +27,7 @@ defmodule Letsvote.Votes do
   end
 
   def get_poll(id) do
-    Repo.get!(Poll, id) |> Repo.preload([:options, :image])
+    Repo.get!(Poll, id) |> Repo.preload([:options, :image, :vote_records])
   end
 
   def create_options(options, poll) do

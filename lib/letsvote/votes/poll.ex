@@ -4,11 +4,14 @@ defmodule Letsvote.Votes.Poll do
   alias Letsvote.Votes.Poll
   alias Letsvote.Votes.Option
   alias Letsvote.Accounts.User
+  alias Letsvote.Votes.Image
+  alias Letsvote.Votes.VoteRecord
 
   schema "polls" do
     field(:question, :string)
     has_many(:options, Option)
     has_one(:image, Image)
+    has_many(:vote_records, VoteRecord)
     belongs_to(:user, User)
     timestamps()
   end
