@@ -8,6 +8,7 @@ defmodule Letsvote.Votes.Poll do
   schema "polls" do
     field(:question, :string)
     has_many(:options, Option)
+    has_one(:image, Image)
     belongs_to(:user, User)
     timestamps()
   end

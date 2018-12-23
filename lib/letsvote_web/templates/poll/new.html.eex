@@ -17,6 +17,15 @@
       <%= file_input f, :image %>
     </label>
     <br />
+    <label>
+      Image caption:<br />
+      <input type="text" name="image_data[caption]">
+    </label>
+    <br />
+    <label>
+      Image alt(for screen readers):<br />
+      <input type="text" name="image_data[caption]">
+    </label>
     <%= submit "Add Poll" %>
   <% end %>
 </div>

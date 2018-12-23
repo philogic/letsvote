@@ -1,14 +1,16 @@
 defmodule Letsvote.Votes.Image do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Letsvote.Votes.Poll
+  alias Letsvote.Accounts.User
 
 
   schema "images" do
     field :alt, :string
     field :caption, :string
     field :url, :string
-    field :poll_id, :id
-    field :user_id, :id
+    belongs_to(:poll, Poll)
+    belongs_to(:user, User)
 
     timestamps()
   end

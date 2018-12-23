@@ -1,5 +1,14 @@
 <div class="poll-display">
   <h4>Poll: <%= @poll.question %></h4>
+  <%= if @poll.image do %>
+    <div class="image-display">
+      <img src="<%= @poll.image.url %>" alt="<%= @poll.image.alt%>" style="width: 350px" />
+      <br />
+      <%= if @poll.image.caption do %>
+        <small><%= @poll.image.caption%></small>
+      <% end %>
+    </div>
+  <% end %>
 
   <%= for option <- Enum.sort(@poll.options, &(&1.id >= &2.id)) do %>
     <strong><%= option.answer%></strong>:

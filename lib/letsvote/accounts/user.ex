@@ -12,6 +12,7 @@ defmodule Letsvote.Accounts.User do
     field(:password, :string, virtual: true)
     field(:password_confirmation, :string, virtual: true)
     has_many(:polls, Poll)
+    has_many(:images, Image)
     timestamps()
   end
 
