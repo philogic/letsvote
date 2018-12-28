@@ -3,6 +3,7 @@ defmodule Letsvote.Votes do
   alias Letsvote.Votes.Poll
   alias Letsvote.Votes.Option
   alias Letsvote.Votes.Image
+  alias Letsvote.Votes.VoteRecord
 
   def list_polls do
     Repo.all(Poll) |> Repo.preload([:options, :image, :vote_records])
@@ -53,11 +54,13 @@ defmodule Letsvote.Votes do
     |> Repo.insert()
   end
 
-  def choose_option(option_id) do
+  def choose_option(option_id, voter_ip) do
     with option <- Repo.get!(Option, option_id),
-         votes <- option.votes + 1
+         votes <- option.votes + 1,
+    {:ok, option} <- update_option(option, %{votes: votes}),
+    {:ok, vote_record} <- record_vote(%{poll_id: option.poll_id, ip_address: voter_ip})
       do
-        update_option(option, %{votes: votes})
+      {:ok, option}
     end
   end
 
@@ -91,5 +94,11 @@ defmodule Letsvote.Votes do
   end
   defp save_image(_poll, _image_data, nil) do
     {:ok, nil}
+  end
+
+  def record_vote(attrs) do
+    %VoteRecord{}
+    |> VoteRecord.changeset(attrs)
+    |> Repo.insert()
   end
 end

@@ -32,7 +32,10 @@ defmodule LetsvoteWeb.PollController do
   end
 
   def vote(conn, %{"id" => id}) do
-    with {:ok, option} <- Votes.choose_option(id) do
+    voter_ip = conn.remote_ip
+    |> Tuple.to_list()
+    |> Enum.join(".")
+    with {:ok, option} <- Votes.choose_option(id, voter_ip) do
       conn
       |> put_flash(:info, "You have voted on #{option.answer}")
       |> redirect(to: poll_path(conn, :index))
