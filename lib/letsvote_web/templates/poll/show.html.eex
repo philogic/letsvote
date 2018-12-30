@@ -1,1 +1,2 @@
+<i id="enable-polls-channel" data-poll-id="<%= @poll.id%>"></i>
 <%= render("_poll.html", %{poll: @poll}) %>
