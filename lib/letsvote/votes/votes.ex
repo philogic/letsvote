@@ -1,4 +1,5 @@
 defmodule Letsvote.Votes do
+  import Ecto.Query
   alias Letsvote.Repo
   alias Letsvote.Votes.Poll
   alias Letsvote.Votes.Option
@@ -56,11 +57,14 @@ defmodule Letsvote.Votes do
 
   def choose_option(option_id, voter_ip) do
     with option <- Repo.get!(Option, option_id),
+         false <- voted?(option.poll_id, voter_ip),
          votes <- option.votes + 1,
     {:ok, option} <- update_option(option, %{votes: votes}),
-    {:ok, vote_record} <- record_vote(%{poll_id: option.poll_id, ip_address: voter_ip})
-      do
+    {:ok, _vote_record} <- record_vote(%{poll_id: option.poll_id, ip_address: voter_ip})
+    do
       {:ok, option}
+    else
+      _ -> {:error, "You can not vote. Sorry"}
     end
   end
 
@@ -100,5 +104,11 @@ defmodule Letsvote.Votes do
     %VoteRecord{}
     |> VoteRecord.changeset(attrs)
     |> Repo.insert()
+  end
+
+  def voted?(poll_id, ip_address) do
+    votes = (from v in VoteRecord, where: v.poll_id == ^poll_id and v.ip_address == ^ip_address)
+    |> Repo.aggregate(:count, :id)
+    votes > 0
   end
 end

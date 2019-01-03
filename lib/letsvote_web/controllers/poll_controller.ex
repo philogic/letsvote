@@ -39,6 +39,10 @@ defmodule LetsvoteWeb.PollController do
       conn
       |> put_flash(:info, "You have voted on #{option.answer}")
       |> redirect(to: poll_path(conn, :index))
+    else
+      _ -> conn
+      |> put_flash(:error, "You cannot vote. Sorry.")
+      |> redirect(to: poll_path(conn, :index))
     end
   end
 
