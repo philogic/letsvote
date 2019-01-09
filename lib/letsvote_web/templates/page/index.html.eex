@@ -1,6 +1,8 @@
 <div class="jumbotron">
-  <h2><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h2>
-  <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
+  <h2><%= gettext "Welcome to %{name}!", name: "Let's vote" %></h2>
+  <p class="lead">An e-voting app.</p>
+  <p>New User? <%= link "Create an account", to: user_path(@conn, :new)%></p>
+  <p>Want to vote? <%= link "See available polls", to: poll_path(@conn, :index)%></p>
 </div>
 
 <div class="row marketing">
