@@ -3,6 +3,7 @@ defmodule Letsvote.Accounts.User do
   import Ecto.Changeset
   alias Letsvote.Accounts.User
   alias Letsvote.Votes.Poll
+  alias Letsvote.Votes.Image
 
   schema "users" do
     field(:username, :string)
