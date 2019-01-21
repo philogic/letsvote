@@ -31,8 +31,7 @@ defmodule LetsvoteWeb.Router do
 
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", LetsvoteWeb do
-  #   pipe_through :api
-  # end
+  scope "/auth", LetsvoteWeb do
+    get "/:provider/callback", SessionController, :callback
+  end
 end

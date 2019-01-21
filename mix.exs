@@ -20,7 +20,7 @@ defmodule Letsvote.Mixfile do
   def application do
     [
       mod: {Letsvote.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :ueberauth, :ueberauth_google]
     ]
   end
 
@@ -43,7 +43,10 @@ defmodule Letsvote.Mixfile do
       {:cowboy, "~> 1.0"},
       {:plug_cowboy, "~> 1.0"},
       {:comeonin, "~> 4.0"},
-      {:bcrypt_elixir, "~> 1.1"}
+      {:bcrypt_elixir, "~> 1.1"},
+      {:ueberauth, "~> 0.4"},
+      {:ueberauth_google, "~> 0.7"},
+      {:oauth, github: "tim/erlang-oauth"}
     ]
   end
 
