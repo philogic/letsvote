@@ -28,6 +28,10 @@ config :ueberauth, Ueberauth,
     google: {Ueberauth.Strategy.Google, []}
   ]
 
+config :ueberauth, Ueberauth.Strategy.Google.OAuth,
+  client_id: "866762433351-4pjtsl2inan6v1fnbt4ujc4ufjraafff.apps.googleusercontent.com",
+  client_secret: "RKPGQd6HY-hu_OLmjwMt7BM4"
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"

@@ -1,4 +1,6 @@
 <div>
+  <hr />
+  <%= link "Login with Google", to: "/auth/google" %>
   <%= form_tag session_path(@conn, :create) do %>
     <label>
       Username:<br />

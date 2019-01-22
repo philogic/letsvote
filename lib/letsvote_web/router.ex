@@ -32,6 +32,8 @@ defmodule LetsvoteWeb.Router do
   end
 
   scope "/auth", LetsvoteWeb do
+    pipe_through :browser
+    get "/:provider", SessionController, :request
     get "/:provider/callback", SessionController, :callback
   end
 end

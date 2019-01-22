@@ -12,6 +12,8 @@ defmodule Letsvote.Accounts.User do
     field(:encrypted_password, :string)
     field(:password, :string, virtual: true)
     field(:password_confirmation, :string, virtual: true)
+    field(:oauth_provider, :string)
+    field(:oauth_id, :string)
     has_many(:polls, Poll)
     has_many(:images, Image)
     timestamps()
@@ -19,11 +21,11 @@ defmodule Letsvote.Accounts.User do
 
   def changeset(%User{} = user, attrs) do
     user
-    |> cast(attrs, [:username, :email, :active, :password, :password_confirmation])
+    |> cast(attrs, [:username, :email, :active, :password, :password_confirmation, :oauth_provider, :oauth_id])
     |> validate_confirmation(:password, message: "Passwords do not match")
     |> validate_format(:email, ~r/@/)
     |> encrypt_password()
-    |> validate_required([:username, :email, :active, :encrypted_password])
+    |> validate_required([:username, :active, :encrypted_password])
     |> unique_constraint(:username)
   end
 

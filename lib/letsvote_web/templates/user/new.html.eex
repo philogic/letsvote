@@ -1,2 +1,5 @@
 <h4>New User</h4>
+<hr />
+<%= link "Sign up with Google", to: "/auth/google" %>
+<hr />
 <%= render("form.html", %{user: @user, conn: @conn}) %>
